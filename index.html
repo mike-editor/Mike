@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mike — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ff;--ink:#1b1238;--muted:#5d5580;--accent:#7c3aed;--accent2:#ec4899;--on-accent:#fff;--card:#ffffff;--line:#ddd5f5;
+color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0a18;--ink:#f3f0ff;--muted:#a59fc9;--accent:#a78bfa;--accent2:#f472b6;--on-accent:#120d26;--card:#17132b;--line:#2c2550;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c0a18;--ink:#f3f0ff;--muted:#a59fc9;--accent:#a78bfa;--accent2:#f472b6;--on-accent:#120d26;--card:#17132b;--line:#2c2550;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.6;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px}
+nav{display:flex;justify-content:space-between;padding:22px 0;font-weight:600}
+nav div{display:flex;gap:20px}
+nav a{text-decoration:none}
+nav a:hover{color:var(--accent)}
+.hero{padding:9vh 0 10vh;position:relative;isolation:isolate}
+.hero::before{content:"";position:absolute;right:0;top:0;width:min(65vw,420px);aspect-ratio:1;background:radial-gradient(circle,var(--accent),transparent 65%);opacity:.4;filter:blur(36px);z-index:-1;animation:float 9s ease-in-out infinite}
+.hero::after{content:"";position:absolute;left:0;bottom:0;width:min(45vw,260px);aspect-ratio:1;background:radial-gradient(circle,var(--accent),transparent 65%);opacity:.22;filter:blur(40px);z-index:-1;animation:float 12s ease-in-out infinite reverse}
+h1{font-size:clamp(3.2rem,15vw,9rem);line-height:.9;letter-spacing:-.04em;font-weight:800;margin:0 0 28px;animation:rise .8s ease-out both}
+.hero p{max-width:34ch;font-size:1.25rem;color:var(--muted);margin:0 0 30px}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none}
+.btn:hover{filter:brightness(1.1)}
+section{padding:60px 0;border-top:1px solid var(--line)}
+h2{font-size:2rem;letter-spacing:-.02em;margin:0 0 28px}
+.work{display:grid;gap:18px}
+.proj{display:grid;gap:6px;padding:26px;background:var(--card);border-radius:20px;text-decoration:none}
+.proj:hover{outline:2px solid var(--accent)}
+.proj h3{margin:0;font-size:1.4rem}
+.proj p{margin:0;color:var(--muted)}
+.tags{font-size:.9rem;color:var(--accent);font-weight:600}
+.skills{display:flex;flex-wrap:wrap;gap:10px;padding:0;list-style:none;margin:22px 0 0}
+.skills li{border:1px solid var(--line);padding:6px 16px;border-radius:999px}
+.about p{max-width:60ch;margin:0}
+.edits{list-style:none;padding:0;margin:0;display:grid;gap:0}
+.edits li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);font-size:1.3rem;font-weight:600}
+.edits li span{font-size:.95rem;font-weight:400;color:var(--muted);text-align:right}
+footer{padding:40px 0 60px;color:var(--muted)}
+h1{background:linear-gradient(90deg,var(--ink) 0%,var(--accent) 50%,var(--ink) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .8s ease-out both,shine 6s linear infinite}
+.hero p{animation:rise .8s .25s ease-out both}
+.hero .btn{animation:rise .8s .45s ease-out both}
+nav{animation:rise .6s ease-out both}
+.proj{transition:transform .3s ease,outline-color .3s ease}
+.proj:hover{transform:translateY(-6px)}
+.edits li{transition:padding-left .3s ease,color .3s ease}
+.edits li:hover{padding-left:12px;color:var(--accent)}
+.skills li{transition:transform .25s ease,background .25s ease,color .25s ease}
+.skills li:hover{transform:translateY(-3px);background:var(--accent);color:var(--on-accent)}
+.rv{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+.edits .more{display:none}
+.edits.open .more{display:flex}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(600px 420px at 90% 4%,color-mix(in srgb,var(--accent) 26%,transparent),transparent),radial-gradient(520px 420px at 4% 92%,color-mix(in srgb,var(--accent2) 18%,transparent),transparent)}
+h1{background:linear-gradient(90deg,var(--ink) 0%,var(--accent) 35%,var(--accent2) 65%,var(--ink) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .8s ease-out both,shine 6s linear infinite}
+.hero::after{background:radial-gradient(circle,var(--accent2),transparent 65%)}
+.btn{background:linear-gradient(135deg,var(--accent),var(--accent2));transition:box-shadow .3s ease,filter .3s ease}
+.btn:hover{box-shadow:0 10px 34px -6px color-mix(in srgb,var(--accent) 65%,transparent)}
+h2::after{content:"";display:block;width:80px;height:4px;border-radius:4px;margin-top:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .8s .2s ease}
+h2.rv:not(.in)::after{width:0}
+.proj{position:relative;overflow:hidden;border:1px solid var(--line)}
+.proj::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,color-mix(in srgb,var(--accent) 20%,transparent) 50%,transparent 70%);transform:translateX(-100%);transition:transform .8s ease}
+.proj:hover::after{transform:translateX(100%)}
+.proj{padding:0;gap:0;border-radius:22px}
+.thumb{position:relative;aspect-ratio:16/9;display:grid;place-items:center;overflow:hidden}
+.thumb::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.1) 0 2px,transparent 2px 30px)}
+.t1{background:linear-gradient(135deg,#7c3aed,#ec4899)}
+.t2{background:linear-gradient(135deg,#2563eb,#7c3aed)}
+.t3{background:linear-gradient(135deg,#ec4899,#f59e0b)}
+.thumb em{position:absolute;top:14px;left:18px;z-index:1;font-style:normal;font-weight:800;font-size:.95rem;color:rgba(255,255,255,.92)}
+.play{position:relative;z-index:1;width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.94);box-shadow:0 10px 30px rgba(0,0,0,.3);transition:transform .3s ease}
+.play::after{content:"";position:absolute;left:26px;top:21px;border-left:18px solid #1b1238;border-top:11px solid transparent;border-bottom:11px solid transparent}
+.play::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #fff;animation:ping 2.2s ease-out infinite}
+.proj:hover .play{transform:scale(1.14)}
+.meta{display:grid;gap:6px;padding:20px 22px 24px}
+.meta .tags{text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}
+@keyframes ping{to{transform:scale(1.8);opacity:0}}
+@media (prefers-reduced-motion:reduce){.play::before{animation:none}}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:14px 0;margin:0 -22px 20px}
+.track{display:flex;width:max-content;animation:marq 26s linear infinite}
+.track span{padding-right:30px;white-space:nowrap;font-weight:800;font-size:1.35rem;letter-spacing:-.01em;color:var(--muted)}
+.track b{color:var(--accent2);font-weight:400}
+.bar{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:100%;z-index:20;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--accent),var(--accent2));animation:grow linear both;animation-timeline:scroll(root)}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes grow{to{transform:scaleX(1)}}
+@media (prefers-reduced-motion:reduce){.track,.bar{animation:none}.proj::after{transition:none}}
+@keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-24px,28px) scale(1.12)}}
+@keyframes shine{from{background-position:0 0}to{background-position:-200% 0}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){h1,.hero p,.hero .btn,nav,.hero::before,.hero::after{animation:none}.proj,.edits li,.skills li{transition:none}}
+@media (prefers-reduced-motion:reduce){h1{animation:none}html{scroll-behavior:auto}}
+@media (min-width:700px){.work{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<div class="wrap">
+<nav><strong>Mike</strong><div><a href="#work">Work</a><a href="#edits">Edits</a><a href="#about">About</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero">
+<h1>Mike</h1>
+<p>Editor who turns raw footage into stories people watch till the end.</p>
+<a class="btn" href="#contact">Get in touch</a>
+</header>
+<div class="marquee" aria-hidden="true"><div class="track"><span>Speed ramp <b>✦</b> Transitions <b>✦</b> Motion graphics <b>✦</b> Vlogs <b>✦</b> Real estate <b>✦</b> Cinematography <b>✦</b> </span><span>Speed ramp <b>✦</b> Transitions <b>✦</b> Motion graphics <b>✦</b> Vlogs <b>✦</b> Real estate <b>✦</b> Cinematography <b>✦</b> </span></div></div>
+
+<section id="work">
+<h2>Selected work</h2>
+<div class="work">
+<a class="proj" href="https://drive.google.com/file/d/1upa_HhaBTa16pwLjwO4q6ez4ooEqM_Hy/view?usp=drivesdk" target="_blank" rel="noopener"><div class="thumb t1"><em>01</em><span class="play"></span></div><div class="meta"><span class="tags">Freelance</span><h3>Freelance work</h3><p>Tap to watch one of my edits.</p></div></a>
+<a class="proj" href="https://drive.google.com/file/d/1YNoK1iJPuaRJ1RcNRcP-u361f5fQMNNs/view?usp=drivesdk" target="_blank" rel="noopener"><div class="thumb t2"><em>02</em><span class="play"></span></div><div class="meta"><span class="tags">Motion</span><h3>Motion graphics</h3><p>Tap to watch my motion graphics work.</p></div></a>
+<a class="proj" href="https://drive.google.com/file/d/1WoV-9qRHNFypfu4-0HP3dq-Y672FrmV9/view?usp=drivesdk" target="_blank" rel="noopener"><div class="thumb t3"><em>03</em><span class="play"></span></div><div class="meta"><span class="tags">Transitions</span><h3>Transition</h3><p>Tap to watch my transition edit.</p></div></a>
+</div>
+<p style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="https://drive.google.com/drive/folders/1c0El6xC6NusYBV9bRaQ0Ln3S9jmGAAOU" target="_blank" rel="noopener">View all my work</a></p>
+</section>
+
+<section id="edits">
+<h2>What I edit</h2>
+<ul class="edits">
+<li>Speed ramp &amp; Transitions<span>Smooth slow-mo and creative scene changes</span></li>
+<li>Real estate<span>Property tours and walkthroughs</span></li>
+<li>Vlogs &amp; Gaming<span>Story-first vlogs, highlights and montages</span></li>
+<li class="more">Travel videos<span>Transition-based edits</span></li>
+<li class="more">Motion graphics<span>Titles, text and animation</span></li>
+<li class="more">Podcast edits<span>Clean cuts and sound clean-up</span></li>
+<li class="more">Cinematography<span>Cinematic look and colour</span></li>
+<li class="more">Finance videos<span>Clear, professional explainers</span></li>
+</ul>
+<p><button class="btn" id="more" type="button" aria-expanded="false" style="border:0;font:inherit;font-weight:600;cursor:pointer;margin-top:24px">View more</button></p>
+</section>
+
+<section id="about" class="about">
+<h2>About me</h2>
+<p>I’m Mike, 17 years old, and I’ve been editing for 1 year. In that time I’ve worked with 9+ clients and learned that every good video starts with deleting the boring parts. I do that for a living now. Sadly, it doesn’t work on homework.</p>
+<ul class="skills"><li>Video editing</li><li>Color grading</li><li>Reels &amp; Shorts</li><li>Sound sync</li></ul>
+</section>
+
+<section id="contact">
+<h2>Say hello</h2>
+<p style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" id="copy" type="button" style="border:0;font:inherit;font-weight:600;cursor:pointer">Copy email</button></p>
+<p style="color:var(--muted)">mike.videoeditorr@gmail.com</p>
+<p style="margin-top:34px;font-weight:600">Find me on Instagram</p>
+<ul class="skills" style="margin-top:12px">
+<li><a style="text-decoration:none" href="https://www.instagram.com/mike.edittz" target="_blank" rel="noopener">@mike.edittz</a></li>
+<li><a style="text-decoration:none" href="https://www.instagram.com/mike.motionn" target="_blank" rel="noopener">@mike.motionn</a></li>
+<li><a style="text-decoration:none" href="https://www.instagram.com/mike.freelancee" target="_blank" rel="noopener">@mike.freelancee</a></li>
+</ul>
+</section>
+
+<footer>© 2026 Mike</footer>
+</div>
+<script>
+(function(){try{
+if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver' in window))return;
+var els=document.querySelectorAll('section h2,.proj,.edits li,.about p,.skills li,#contact p');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target;t.classList.add('in');io.unobserve(t);setTimeout(function(){t.style.transitionDelay=''},1000)}})},{threshold:.15});
+els.forEach(function(el,i){el.classList.add('rv');el.style.transitionDelay=(i%4)*90+'ms';io.observe(el)});
+}catch(e){}})();
+</script>
+<script>
+document.getElementById('more').onclick=function(){var l=document.querySelector('.edits'),o=l.classList.toggle('open');this.textContent=o?'View less':'View more';this.setAttribute('aria-expanded',o);if(o)l.querySelectorAll('.more').forEach(function(x,i){setTimeout(function(){x.classList.add('in')},i*80)})};
+document.getElementById('copy').onclick=function(){var b=this,t='mike.videoeditorr@gmail.com';
+function ok(){b.textContent='Copied!';setTimeout(function(){b.textContent='Copy email'},2000)}
+function fb(){try{var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');document.body.removeChild(a);ok()}catch(e){b.textContent='Select the email below'}}
+try{navigator.clipboard.writeText(t).then(ok,fb)}catch(e){fb()}};
+</script>
+</body>
+</html>
